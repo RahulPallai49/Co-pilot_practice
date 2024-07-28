@@ -25,6 +25,22 @@ public class Patient {
     @OneToMany(mappedBy = "patient",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     private List<ClinicalData> clinicalData;
     
+    public Patient(Long id, String firstName, String lastName, int age, List<ClinicalData> clinicalData) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+        this.clinicalData = clinicalData;
+    }
+
+    public List<ClinicalData> getClinicalData() {
+        return clinicalData;
+    }
+
+    public void setClinicalData(List<ClinicalData> clinicalData) {
+        this.clinicalData = clinicalData;
+    }
+
     public Patient() {
         // Default constructor
     }

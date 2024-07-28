@@ -2,6 +2,8 @@ package com.example.clinicalsapi.clincalsapi.models;
 
 import java.sql.Timestamp;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
@@ -23,6 +25,7 @@ public class ClinicalData {
     
     private String componentName;
     private String componentValue;
+    @CreationTimestamp
     private Timestamp measuredDateTime;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -30,6 +33,23 @@ public class ClinicalData {
     @JsonIgnore    
     private Patient patient;
     
+    public Patient getPatient() {
+        return patient;
+    }
+
+    public void setPatient(Patient patient) {
+        this.patient = patient;
+    }
+
+    public ClinicalData(Long id, String componentName, String componentValue, Timestamp measuredDateTime,
+            Patient patient) {
+        this.id = id;
+        this.componentName = componentName;
+        this.componentValue = componentValue;
+        this.measuredDateTime = measuredDateTime;
+        this.patient = patient;
+    }
+
     // Constructors, getters, and setters
     public ClinicalData() {
     }
